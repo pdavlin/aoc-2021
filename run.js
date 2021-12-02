@@ -2,7 +2,7 @@ const startTime = Date.now();
 
 console.log("🎄 Advent of Code 2021 🎄");
 
-Deno.args.length === 0 ? runAll() : runProject(Deno.args[0]);
+Deno.args.length === 0 ? await runAll() : await runProject(Deno.args[0]);
 
 async function runAll() {
   for await (const file of Deno.readDir(".")) {
@@ -39,3 +39,5 @@ function getRuntime() {
   const endTime = Date.now();
   console.log(`Runtime: ${(endTime - startTime) / 1000} seconds`);
 }
+
+console.log("🎅: \"Ho ho ho!\"");
