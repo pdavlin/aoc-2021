@@ -1,6 +1,6 @@
 const projectToRun = Deno.args[0];
 
-console.log(`Running project ${projectToRun}`);
+console.log(`Running code for Day ${projectToRun} of Advent of Code 2021`);
 
 let inputFiles = [];
 
