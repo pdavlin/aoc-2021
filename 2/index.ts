@@ -1,6 +1,6 @@
-export const runPart1 = (input) => {
+export const runPart1 = (input: string[]) => {
   // horizontal, depth
-  let storage = [0, 0];
+  const storage = [0, 0];
   input.forEach((curr) =>
     curr.split(" ")[0] === "forward"
       ? (storage[0] = storage[0] + Number(curr.split(" ")[1]))
@@ -11,9 +11,9 @@ export const runPart1 = (input) => {
   return storage[0] * storage[1];
 };
 
-export const runPart2 = (input) => {
+export const runPart2 = (input: string[]) => {
   // horizontal, depth, aim
-  let storage = [0, 0, 0];
+  const storage = [0, 0, 0];
   input
     .map((line) => line.split(" "))
     .forEach((curr) => {

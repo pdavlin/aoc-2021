@@ -1,3 +1,7 @@
 Run Command:
 
-`deno run --allow-read run.js [project num]`
+`deno run --config ./tsconfig.json --allow-read run.ts`
+
+or:
+
+`deno run --config ./tsconfig.json --allow-read run.ts [day number]`
