@@ -52,6 +52,7 @@ async function runProject(projectToRun: string, skipTimeCalc = false) {
   !skipTimeCalc && getRuntime();
 }
 
+/** Calculate how long this dumb code took to run */
 function getRuntime() {
   const endTime = Date.now();
   console.log(`Runtime: ${(endTime - startTime) / 1000} seconds`);
