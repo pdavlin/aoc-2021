@@ -13,9 +13,13 @@ for await (const file of Deno.readDir(projectToRun)) {
   }
 }
 
-import(`./${projectToRun}/index.js`).then((module) =>
+const startTime = Date.now();
+await import(`./${projectToRun}/index.js`).then((module) =>
   console.log(`Part 1 result: ${module.runPart1(inputFiles[0])}`)
 );
-import(`./${projectToRun}/index.js`).then((module) =>
+await import(`./${projectToRun}/index.js`).then((module) =>
   console.log(`Part 2 result: ${module.runPart2(inputFiles.at(-1))}`)
 );
+
+const endTime = Date.now();
+console.log(`Runtime: ${(endTime - startTime) / 1000} seconds`);
