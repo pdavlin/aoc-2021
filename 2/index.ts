@@ -1,3 +1,4 @@
+/** Run part 1 of the day's challenge. */
 export const runPart1 = (input: string[]) => {
   // horizontal, depth
   const storage = [0, 0];
@@ -11,6 +12,7 @@ export const runPart1 = (input: string[]) => {
   return storage[0] * storage[1];
 };
 
+/** Run part 2 of the day's challenge. */
 export const runPart2 = (input: string[]) => {
   // horizontal, depth, aim
   const storage = [0, 0, 0];

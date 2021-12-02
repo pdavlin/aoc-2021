@@ -1,0 +1,5 @@
+/** Run part 1 of the day's challenge. */
+export const runPart1 = (input:string[]) => "unimplemented";
+
+/** Run part 2 of the day's challenge. */
+export const runPart2 = (input:string[]) => "unimplemented";
