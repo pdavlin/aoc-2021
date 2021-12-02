@@ -1,25 +1,41 @@
-const projectToRun = Deno.args[0];
+const startTime = Date.now();
 
-console.log(`Running code for Day ${projectToRun} of Advent of Code 2021`);
+console.log("🎄 Advent of Code 2021 🎄");
 
-let inputFiles = [];
+Deno.args.length === 0 ? runAll() : runProject(Deno.args[0]);
 
-for await (const file of Deno.readDir(projectToRun)) {
-  if (file.name.startsWith("input") && file.name.endsWith(".txt")) {
-    const fileContents = await Deno.readTextFile(
-      `${projectToRun}/${file.name}`
-    );
-    inputFiles.push(fileContents.split("\r\n"));
+async function runAll() {
+  for await (const file of Deno.readDir(".")) {
+    file.isDirectory && Number(file.name) && (await runProject(file.name, true));
   }
+  getRuntime();
 }
 
-const startTime = Date.now();
-await import(`./${projectToRun}/index.js`).then((module) =>
-  console.log(`Part 1 result: ${module.runPart1(inputFiles[0])}`)
-);
-await import(`./${projectToRun}/index.js`).then((module) =>
-  console.log(`Part 2 result: ${module.runPart2(inputFiles.at(-1))}`)
-);
+async function runProject(projectToRun, runAll = false) {
+  console.log(`Day ${projectToRun}`);
 
-const endTime = Date.now();
-console.log(`Runtime: ${(endTime - startTime) / 1000} seconds`);
+  let inputFiles = [];
+
+  for await (const file of Deno.readDir(projectToRun)) {
+    if (file.name.startsWith("input") && file.name.endsWith(".txt")) {
+      const fileContents = await Deno.readTextFile(
+        `${projectToRun}/${file.name}`
+      );
+      inputFiles.push(fileContents.split("\r\n"));
+    }
+  }
+
+  await import(`./${projectToRun}/index.js`).then((module) =>
+    console.log(`Part 1 result: ${module.runPart1(inputFiles[0])}`)
+  );
+  await import(`./${projectToRun}/index.js`).then((module) =>
+    console.log(`Part 2 result: ${module.runPart2(inputFiles.at(-1))}`)
+  );
+
+  !runAll && getRuntime();
+}
+
+function getRuntime() {
+  const endTime = Date.now();
+  console.log(`Runtime: ${(endTime - startTime) / 1000} seconds`);
+}
