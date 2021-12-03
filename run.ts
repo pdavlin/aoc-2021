@@ -1,6 +1,6 @@
 const startTime = Date.now();
 
-console.log("🎄 Advent of Code 2021 🎄");
+console.log("🎄 Advent of Code 2021 🎄\n-------------------------------------------");
 
 Deno.args.length === 0 ? await runAll() : await runProject(Deno.args[0]);
 
@@ -22,7 +22,7 @@ async function runAll() {
  * @param skipTimeCalc whether to skip calculating run time (when running all projects)
  */
 async function runProject(projectToRun: string, skipTimeCalc = false) {
-  console.log(`Day ${projectToRun}`);
+  console.log(`Day ${projectToRun}: https://adventofcode.com/2021/day/${projectToRun}`);
 
   const inputFiles: string[][] = [];
   // default to using typescript
@@ -48,6 +48,7 @@ async function runProject(projectToRun: string, skipTimeCalc = false) {
     // corresponding roughly to one or two parts of the challenge.
     console.log(`Part 2 result: ${module.runPart2(inputFiles.at(-1))}`);
   });
+  console.log('-------------------------------------------');
 
   !skipTimeCalc && getRuntime();
 }
@@ -55,7 +56,7 @@ async function runProject(projectToRun: string, skipTimeCalc = false) {
 /** Calculate how long this dumb code took to run */
 function getRuntime() {
   const endTime = Date.now();
-  console.log(`Runtime: ${(endTime - startTime) / 1000} seconds`);
+  console.log(`Runtime: ${(endTime - startTime) / 1000} seconds\n(just as long as it takes for Santa to drop the gifts!)`);
 }
 
 console.log(`🎅: "Ho ho ho!"`);
